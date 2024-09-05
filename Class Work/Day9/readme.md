@@ -37,4 +37,16 @@
 
     - `implements` -> it Represent the `IS-A` relationship between a classes
 
+ # vergas argument
+- varargs allow a method to accept a variable number of arguments
+- This is achieved by declaring a method parameter with an ellipsis (...) followed by the data type.
+```java
+public static int sumNumbers(int... numbers) {
+    int sum = 0;
+    for (int num : numbers) {
+        sum += num;
+    }
+    return sum;
+}
+```
 
