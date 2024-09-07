@@ -64,7 +64,7 @@ class B extends A
 ### then
  ```java
 class childClassName extends parentClassName impliments interface1, interface2
-    ```
+  ```
 
 # Default Method
   - Default Method works only forn interfaces
