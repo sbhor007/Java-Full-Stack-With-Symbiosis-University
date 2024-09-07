@@ -55,10 +55,20 @@ class B extends A
 - `interface` -------- impliments -------- `class`
 - `interface` -------- extends -------- `interface`
 -  `interface1` , `interface2` ,  ----------- `class`
-    - *class className impliments interface1, interface2
+     ```java
+     class className impliments interface1, interface2
+    ```
 
 ### if 
   `interface1` , `interface2` , `class` ----------- `class`
 ### then
-  `class childClassName extends parentClassName impliments interface1, interface2`
+ ```java
+class childClassName extends parentClassName impliments interface1, interface2
+    ```
+
+# Default Method
+  - Default Method works only forn interfaces
+  - it not awailable/worked for normal class
+  - no need to implement in class
+  - it includes java 8
   
