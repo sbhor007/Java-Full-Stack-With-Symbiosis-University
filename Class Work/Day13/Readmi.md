@@ -59,6 +59,8 @@
     final class ClassName{}
     ```
 
+# Validation V/S Exception Handling
+
 # finalize() 
   - used to distroy Object
   - it is a built in method
