@@ -16,8 +16,6 @@ class Book implements Comparable<Book> {
 		this.bookId = bookId;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Book [\nbookId : " + bookId + "\nbookName : " + bookName + "\nbookAuthor : " + bookAuthor
@@ -62,6 +60,7 @@ public class Driver {
 				books.add(new Book(bookId, bookName, bookAuthor, publisher));
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
+				scan.nextLine();
 			}
 
 			System.out.println("Do You Want To Store Another record (Y/N) : ");
