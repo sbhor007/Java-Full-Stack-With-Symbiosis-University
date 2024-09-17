@@ -86,6 +86,7 @@ public class EmployeesList {
 					employees.add(new Employee(empId, empName, empSalary));
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
+					scan.nextLine();
 				}
 				break;
 			case 2:
