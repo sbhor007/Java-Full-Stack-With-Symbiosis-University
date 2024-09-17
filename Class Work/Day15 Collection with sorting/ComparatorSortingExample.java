@@ -87,6 +87,7 @@ public class ComparatorSortingExample {
 
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
+						scan.nextLine();
 					}
 					System.out.print("Do You Want Add Another Record (y/n) : ");
 					ch = scan.next().charAt(0);
@@ -122,7 +123,7 @@ public class ComparatorSortingExample {
 				System.out.println("Invalid Input....");
 			}
 
-			System.out.print("\nDo You Want a Continue (y/n) : ");
+			System.out.print("\nGot for Main Mainu (y/n) : ");
 			ch = scan.next().charAt(0);
 		} while (ch == 'Y' || ch == 'y');
 		System.out.println("program exit");
