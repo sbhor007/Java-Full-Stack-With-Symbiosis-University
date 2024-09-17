@@ -39,17 +39,15 @@ public class MobileList {
 				System.out.print("Enter Your Choice : ");
 				choice = scan.nextInt();
 					
-				try {
+				
 						
 				switch (choice) {
 				case 1:
+					try {
 						System.out.println("\nEnter Mobile Details");
 						System.out.println("-----------------------------");
-						try {
 						System.out.print("Mobile ID : ");
 						mobileId = scan.nextInt();
-						}catch(InputMismatchException e) {System.out.println("Aa");}
-						scan.next();
 						System.out.print("Model no : ");
 						modelNo = scan.next();
 						System.out.print("Mobile Name : ");
@@ -60,7 +58,10 @@ public class MobileList {
 						mobileNo = scan.nextInt();
 
 						mobiles.add(new Mobile(mobileId, modelNo, mobileName, serviceProvider, mobileNo));
-					
+					}catch (Exception e) {
+						System.out.println("Wrong id");
+						scan.nextLine();
+				}
 				
 					break;
 					
@@ -75,10 +76,7 @@ public class MobileList {
 				default:
 					System.out.println("Invalid Input....");
 				}
-				}catch (Exception e) {
-					// TODO: handle exception
-					System.out.println("Wrong id");
-				}
+				
 				System.out.print("Do you want to agein (y/n) : ");
 				ch = scan.next().charAt(0);
 			
