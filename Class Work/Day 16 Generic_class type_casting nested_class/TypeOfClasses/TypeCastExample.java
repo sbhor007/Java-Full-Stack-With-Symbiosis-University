@@ -139,7 +139,7 @@ public class TypeCastExample {
 		System.out.println("The Integer Value is : " + num);
 		*/
 	}
-	static void metho2() {
+	static void method2() {
 		//Explicit type Casting
 		double num = 10.90;
 		System.out.println("The Integer Value is : " + num);
@@ -160,9 +160,12 @@ public class TypeCastExample {
 		System.out.println("The String Value is : " + data);
 	}
 	public static void main(String[] args) {
-		
-		
+		wrapDemo2();
+		wrapDemo();
+		method1();
+		method2();
+		method3();
+		method4();
+		method5();
 	}
-	
-
 }
