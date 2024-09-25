@@ -11,17 +11,22 @@ import java.util.Scanner;
 
 public class MenuDrivenSQL {
 	static Connection con;
+	// established Databse Connection
 	static String mysqlUrl = "jdbc:mysql://localhost/santoshDB?useSSL=false";
 
 	public void insertData(int empCode, String empName, String gender, String grade, int gross, LocalDate dob) {
 		try {
 			int n;
+			// Connect To The Database
 			con = DriverManager.getConnection(mysqlUrl, "root", "mysql80");
+			// Statement: execute SQL queries against the database.
 			Statement smt = con.createStatement();
 
+			//Insert Data Into employee table
 			String query = "INSERT INTO employee VALUES(" + empCode + ",'" + empName + "','" + gender + "','" + grade
 					+ "'," + gross + ",'" + dob +"')";
 
+			// Exixute The Query
 			n = smt.executeUpdate(query);
 			if (n > 0) {
 				System.out.println("Record Inserted Successfully.....");
@@ -36,7 +41,7 @@ public class MenuDrivenSQL {
 		try {
 			con = DriverManager.getConnection(mysqlUrl, "root", "mysql80");
 			Statement smt = con.createStatement();
-
+			// Update Query
 			String query = "UPDATE employee SET ename = '" + empName + "' WHERE(ecode = " + empCode + ")";
 			n = smt.executeUpdate(query);
 			if (n > 0) {
@@ -53,7 +58,7 @@ public class MenuDrivenSQL {
 		try {
 			con = DriverManager.getConnection(mysqlUrl, "root", "mysql80");
 			Statement smt = con.createStatement();
-
+			//Delete Query
 			String query = "DELETE FROM employee WHERE ecode = " + empCode;
 			n = smt.executeUpdate(query);
 			if (n > 0) {
@@ -69,6 +74,7 @@ public class MenuDrivenSQL {
 		try {
 			con = DriverManager.getConnection(mysqlUrl, "root", "mysql80");
 			Statement smt = con.createStatement();
+			// Select Query 
 			ResultSet result = smt.executeQuery("SELECT * FROM employee");
 			// print result
 			while (result.next()) {
@@ -98,6 +104,7 @@ public class MenuDrivenSQL {
 					char cha;
 					do {
 						try {
+							//Accept Employee Details
 							System.out.println("Enter Employee Details");
 							System.out.print("Code : ");
 							int empCode = scan.nextInt();
@@ -111,11 +118,12 @@ public class MenuDrivenSQL {
 							System.out.print("Grade : ");
 							String grade = scan.next();
 							
+							System.out.print("Gross : ");
+							int gross = scan.nextInt();
+							
 							System.out.print("Date Of Birth (YYYY-MM-DD) : ");
 							String DOB = scan.next();
 
-							System.out.print("Gross : ");
-							int gross = scan.nextInt();
 							employee.insertData(empCode, empName, gender, grade, gross,LocalDate.parse(DOB));
 						} catch (Exception e) {
 							System.out.println(e.getMessage());
