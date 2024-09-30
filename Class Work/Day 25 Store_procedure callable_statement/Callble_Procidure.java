@@ -1,10 +1,12 @@
 package Day25_procegers_Callable;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Callble_Procidure {
@@ -48,21 +50,31 @@ public class Callble_Procidure {
 		return n;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter Employee details");
-		System.out.println("Emp Id : ");
-		int empId = scan.nextInt();
-		System.out.println("name : ");
-		String empName = scan.next();
-		System.out.println("department : ");
-		String dept = scan.next();
-		System.out.println("Salary : ");
-		double salary = scan.nextDouble();
-		
-		System.err.println(insertEmployee(empId, empName, dept, salary));
-		// TODO Auto-generated method stub
-
+		char choice;
+		do {
+			try {
+				System.out.println("Enter Employee details");
+				System.out.println("Emp Id : ");
+				int empId = scan.nextInt();
+				System.out.println("name : ");
+				String empName = scan.next();
+				System.out.println("department : ");
+				String dept = scan.next();
+				System.out.println("Salary : ");
+				double salary = scan.nextDouble();
+				
+				System.err.println(insertEmployee(empId, empName, dept, salary));
+				
+			} catch (InputMismatchException e) {
+				System.out.println(e.getMessage());
+				scan.next();
+			}
+			System.out.print("Enter Your Choice (y/n) : ");
+			choice = scan.next().toUpperCase().charAt(0);
+		}while(choice == 'Y');
+		System.out.println("Program Terminated");
 	}
 
 }
