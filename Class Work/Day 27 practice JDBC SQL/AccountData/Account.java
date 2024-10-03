@@ -45,16 +45,26 @@ public class Account {
 		
 		return  status;
 	}
+	public static boolean getTransactionTypeInformation(String transactionType) {
+		boolean status = false;
+		String query = "CALL getWithdrawInformation(?)";
+		try {
+			callableS = con.prepareCall(query);
+			callableS.setString(1, transactionType);
+			ResultSet rs = callableS.executeQuery();
+			if(!rs.next())
+			{
+				System.out.println("Record Not Awailable");
+			}else {
+				status = true;
+				do {
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t" + rs.getDouble(4) + "\t" + rs.getString(5) + "\t" + rs.getDate(6) + "\t" + rs.getString(7));
+				}while(rs.next());
+			}
+		} catch (SQLException e) {
+			System.out.println("GET WITHDRAW INFORMATION::ERROR: " + e.getMessage());
+		}
+		
+		return status;
+	}
 }
-
-/*
-create table account(
-accountNo int not null primary key,
-accountHolderName varchar(15),
-transactionNo int,
-amount double,
-transactionType varchar(15),
-transactionDate date,
-address varchar(15)
-);
-*/
