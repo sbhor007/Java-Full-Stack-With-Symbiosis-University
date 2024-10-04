@@ -67,4 +67,28 @@ public class Account {
 		
 		return status;
 	}
+
+	public static boolean getMonthlyTransactionDetails(String month) {
+		boolean status = false;
+		String query = "{CALL getMonthlyTransactionDetails(?)}";
+
+		try {
+			callableS = con.prepareCall(query);
+			callableS.setString(1, month);
+			ResultSet rs = callableS.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Record Not Awailable");
+			} else {
+				status = true;
+				do {
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t"
+							+ rs.getDouble(4) + "\t" + rs.getString(5) + "\t" + rs.getDate(6) + "\t" + rs.getString(7));
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			System.out.println("GET MONTHLY TRANSACTION DETAIL::ERROR: " + e.getMessage());
+		}
+
+		return status;
+	}
 }
