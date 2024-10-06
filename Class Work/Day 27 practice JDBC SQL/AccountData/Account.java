@@ -91,4 +91,48 @@ public class Account {
 
 		return status;
 	}
+
+	public static boolean getAllTrabsactionByAccountNo(int accNo) {
+		boolean status = false;
+
+		try {
+			String query = "SELECT * FROM account WHERE accountNo = ?";
+			prepareS = con.prepareStatement(query);
+			prepareS.setInt(1, accNo);
+			ResultSet rs = prepareS.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Record Not Awailable");
+			} else {
+				status = true;
+				do {
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t"
+							+ rs.getDouble(4) + "\t" + rs.getString(5) + "\t" + rs.getDate(6) + "\t" + rs.getString(7));
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			System.out.println("GET ALL TRANSACTION BY ACCOUNT NO::ERROR: " + e.getMessage());
+		}
+
+		return status;
+	}
+
+	// display all the details who has done the transaction less than user amount
+	public static void getTransactionsBelowAmount(int amount) {
+		try {
+			String query = "SELECT * FROM account WHERE amount < ?";
+			prepareS = con.prepareStatement(query);
+			prepareS.setInt(1, amount);
+			ResultSet rs = prepareS.executeQuery();
+			if (!rs.next()) {
+				System.out.println("Record Not Awailable");
+			} else {
+				do {
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3) + "\t"
+							+ rs.getDouble(4) + "\t" + rs.getString(5) + "\t" + rs.getDate(6) + "\t" + rs.getString(7));
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			System.out.println("GET TRANSACTION BELOW AMOUNT::ERROR: " + e.getMessage());
+		}
+	}
 }
