@@ -135,4 +135,39 @@ public class Account {
 			System.out.println("GET TRANSACTION BELOW AMOUNT::ERROR: " + e.getMessage());
 		}
 	}
+	//	select all the a/c holders whose address and who are not from pune and Mumbai
+	public static void getNonPuneMumbaiAccountHolders() {
+		try {
+			String query = "{CALL getNonPuneMumbaiAccountHolders()}";
+			callableS = con.prepareCall(query);
+			ResultSet rs = callableS.executeQuery();
+			if(!rs.next()) {
+				System.out.println("Records not available");
+			}else {
+				do {
+					System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3));
+				}while(rs.next());
+			}
+		} catch (SQLException e) {
+			System.out.println("GET NON PUNE-MUMBAI ACCOUNT HOLDERS::ERROR: " + e.getMessage());
+		}
+	}
+//	select min and max transaction amount in a month of may
+	public static void getMinMaxTransactionAmountInMonth(String month) {
+		try {
+			
+			
+			prepareS = con.prepareStatement("select max(amount) ,min(amount) from account where monthname(transactionDate) = ?");
+			prepareS.setString(1, month);
+			ResultSet rs = prepareS.executeQuery();
+			if(!rs.next()) {
+				System.out.println("Record Not Awailable");
+			}else {
+				System.out.println("Max Amount in a " + month +" : " + rs.getString(1));
+				System.out.println("Min Amount in a " + month +" : " + rs.getString(2));
+			}
+		} catch (SQLException e) {
+			System.out.println("GET MIN MAX TRANSACTION AMOUNT IN PRATICULAR MOTH::ERROR: " + e.getMessage());
+		}
+	}
 }
