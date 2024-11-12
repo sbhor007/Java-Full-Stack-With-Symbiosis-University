@@ -31,7 +31,7 @@ public class Passport {
 	@Temporal(TemporalType.DATE)
 	private Date expiyDate;
 	
-	@OneToOne(mappedBy = "passport")
+	@OneToOne
 	@JoinColumn(name = "personId")
 	private Person person;
 
@@ -54,7 +54,6 @@ public class Passport {
 	public Date getIssueDate() {
 		return issueDate;
 	}
-
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
@@ -62,7 +61,6 @@ public class Passport {
 	public Date getExpiyDate() {
 		return expiyDate;
 	}
-
 	public void setExpiyDate(Date expiyDate) {
 		this.expiyDate = expiyDate;
 	}
@@ -85,13 +83,5 @@ public class Passport {
 	
 	public Passport() {
 		
-	}
-//TODO:last update
-	@Override
-	public String toString() {
-		return "Passport [passportId=" + passportId + ", passportNumber=" + passportNumber + ", issueDate=" + issueDate
-				+ ", expiyDate=" + expiyDate + ", person=" + person + "]";
-	}
-	
-	
+	}	
 }
