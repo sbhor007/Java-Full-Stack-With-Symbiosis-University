@@ -2,6 +2,7 @@ package com.person_passport;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,15 +52,15 @@ public class Passport {
 		this.passportNumber = passportNumber;
 	}
 
-	public Date getIssueDate() {
-		return issueDate;
+	public String getIssueDate() {
+		return issueDate.toString();
 	}
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public Date getExpiyDate() {
-		return expiyDate;
+	public String getExpiyDate() {
+		return expiyDate.toString();
 	}
 	public void setExpiyDate(Date expiyDate) {
 		this.expiyDate = expiyDate;
@@ -72,6 +73,7 @@ public class Passport {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
+	
 
 	public Passport(String passportNumber, Date issueDate, Date expiyDate, Person person) {
 		super();
@@ -83,5 +85,8 @@ public class Passport {
 	
 	public Passport() {
 		
-	}	
+	}
+//TODO:last update
+	
+	
 }
