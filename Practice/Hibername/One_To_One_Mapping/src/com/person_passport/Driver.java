@@ -162,9 +162,10 @@ public class Driver {
 		} catch (Exception e) {
 			System.out.println("main::ERROR" + e.getMessage());
 			scan.next();
+		}finally {
+			session.close();
+			sessionFactory.close();
 		}
-		session.close();
-		sessionFactory.close();
 	}
 
 }
