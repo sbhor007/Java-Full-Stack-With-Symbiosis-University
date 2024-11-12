@@ -21,7 +21,6 @@ public class Person {
 	@Column(name = "personAge",nullable = false)
 	private int personAge;
 	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "passportId")
 	private Passport passport;
 
 	public int getPersonId() {
@@ -35,7 +34,6 @@ public class Person {
 	public void setPersonName(String personName) {
 		this.personName = personName;
 	}
-
 	public int getPersonAge() {
 		return personAge;
 	}
@@ -59,10 +57,5 @@ public class Person {
 	}
 	
 	public Person() {
-	}
-
-	
-	
-	
-	
+	}	
 }
