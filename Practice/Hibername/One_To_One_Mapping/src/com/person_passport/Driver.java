@@ -2,14 +2,12 @@ package com.person_passport;
 
 import java.util.Date;
 import java.util.Scanner;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Driver {
-
 	static void passportMenu() {
 		System.out.println("\n1) create passoport" + "\n2) Retrive Passport Details with there id"
 				+ "\n3) Update Passport Details based on id" + "\n4) Delete Passport");
@@ -23,12 +21,10 @@ public class Driver {
 	static Date getDate() {
 
 		Date d = new Date();
-
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Year : ");
 		int year = scan.nextInt();
 		d.setYear(year - 1900);
-
 		System.out.print("Month No : ");
 		int monthNo = scan.nextInt();
 		d.setMonth(monthNo - 1);
@@ -36,12 +32,9 @@ public class Driver {
 		int day = scan.nextInt();
 		d.setDate(day);
 		return d;
-
 	}
 
-//	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		// TODO: change date formate
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction;
@@ -107,25 +100,26 @@ public class Driver {
 					switch (updateChoice) {
 					case 1:
 						transaction = session.beginTransaction();
-						System.out.println("Enter Person ID : ");
-						personId = scan.nextInt();
-						Person pr = (Person) session.get(Person.class, personId);
-						if (pr != null) {
+						System.out.println("Enter Passport ID : ");
+						int passportId = scan.nextInt();
+						Passport ps = (Passport) session.get(Passport.class, passportId);
+						if (ps != null) {
 							System.out.print("Enter Person Name : ");
 							String personName = scan.next();
-							pr.setPersonName(personName);
-							session.update(pr);
+							ps.getPerson().setPersonName(personName);
+							session.update(ps);
 							transaction.commit();
 							System.out.println("Person Name update Successfully");
+							ps = null;
 						} else {
 							System.out.println("ID Not Found");
 						}
 						break;
 					case 2:
 						transaction = session.beginTransaction();
-						System.out.println("Enter Person ID : ");
-						personId = scan.nextInt();
-						Passport ps = (Passport) session.get(Passport.class, personId);
+						System.out.println("Enter Passport ID : ");
+						passportId = scan.nextInt();
+						 ps = (Passport) session.get(Passport.class, passportId);
 						if (ps != null) {
 							System.out.print("Enter Passport Expiry Date : ");
 							ps.setExpiyDate(getDate());
@@ -142,7 +136,7 @@ public class Driver {
 					break;
 				case 4:
 					transaction = session.beginTransaction();
-					System.out.println("Enter Persron Id : ");
+					System.out.println("Enter Passport ID : ");
 					personId = scan.nextInt();
 					Person p = (Person)session.get(Person.class, personId);
 					if(p != null) {
@@ -161,11 +155,10 @@ public class Driver {
 			} while (goToMainMainu == 'y' || goToMainMainu == 'Y');
 		} catch (Exception e) {
 			System.out.println("main::ERROR" + e.getMessage());
-			scan.next();
+			scan.nextLine();
 		}finally {
 			session.close();
 			sessionFactory.close();
 		}
 	}
-
 }
