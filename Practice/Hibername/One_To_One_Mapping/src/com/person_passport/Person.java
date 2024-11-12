@@ -1,5 +1,6 @@
 package com.person_passport;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,8 @@ public class Person {
 	private String personName;
 	@Column(name = "personAge",nullable = false)
 	private int personAge;
-	@OneToOne
-	@JoinColumn(name = "passportId")
+	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+//	@JoinColumn(name = "passportId")
 	private Passport passport;
 
 	public int getPersonId() {
@@ -60,11 +61,8 @@ public class Person {
 	public Person() {
 	}
 
-	@Override
-	public String toString() {
-		return "Person [\npersonId : " + personId + "\npersonName : " + personName + "\npersonAge : " + personAge
-				+ "\npassport : " + passport + "\n]";
-	}
+	
+	
 	
 	
 }
