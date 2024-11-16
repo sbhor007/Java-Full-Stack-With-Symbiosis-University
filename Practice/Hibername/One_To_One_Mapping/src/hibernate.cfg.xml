@@ -16,5 +16,7 @@
        		<property name="hbm2ddl.auto">update</property>
        		<mapping class="com.person_passport.Passport"/>
        		<mapping class="com.person_passport.Person"/>
+       		<mapping class="com.user_address.User"/>
+       		<mapping class="com.user_address.Address"/>
        </session-factory>
        </hibernate-configuration>
