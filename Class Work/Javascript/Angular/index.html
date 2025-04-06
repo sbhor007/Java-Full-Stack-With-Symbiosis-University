@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    input:invalid{
+        border-color: red;
+    }
+  </style>
+  <body>
+    <form action="">
+      name :
+      <input type="text" name="name" id="name" placeholder="Enter your name" pattern="[a-z]{1,15}"/> <br><br>
+      Email :
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Enter your email"
+      /> <br><br>
+      mobileNo :
+      <input
+        type="number"
+        pattern="[0-9]{10,10}"
+        id="mobileNo"
+        placeholder="mobileNo"
+      /> <br><br>
+      password
+      <input type="text" pattern="[a-zA-Z0-9]{8,12}"> <br><br>
+     
+      price
+      <input type="number" id = 'price' placeholder="price" min="100" max="500"> <br><br>
+      <input type="submit" id="submit">
+    </form>
+    <script>
+        let password = document.getElementById('password').value; 
+        function validatePassword(p){
+                const regex = /^[a-zA-Z0-9]+$/;
+                console.log(regex.test(p));
+                return regex.test(p)
+            };
+            if(validatePassword(password)){
+                alert("password is valid");
+            }else{
+                alert("password is invalid");
+                
+            }
+        document.getElementById('submit').addEventListener('click',()=>{
+            let name = document.getElementById('name').value.trim()
+            let email = document.getElementById('email').value;
+            let mobileNo = document.getElementById('mobileNo').value;
+            let password = document.getElementById('password').value;
+            
+            function validatePassword(p){
+                const regex = /^[a-zA-Z0-9]+$/;
+                console.log(regex.test(p));
+                return regex.test(p)
+            };
+            if(validatePassword(password)){
+                alert("password is valid");
+            }else{
+                alert("password is invalid");
+                
+            }
+
+            
+            console.log(mobileNo.toString().length());
+            if(name === '' || email === '' || mobileNo === ''){
+                alert('Please fill all the fields');
+            }else if(mobileNo.length != 10 || isNaN(mobileNo)){
+                alert('mobile number should be 10 digit')
+            }else if(password.length < 8 || password.test(regex)){
+                alert("invalid password")
+            }
+            
+            else{
+                alert(name + ' ' + email + ' ' + mobileNo);
+            }
+            
+            
+        })
+
+        const arr = [1,2,3,4,5,6,7,8,9]
+        console.log('worrking with map');
+        let multiple = arr.map(a => a*10)
+        console.log('original array : ' + arr);
+        console.log('new array : ' + multiple);
+        // filter
+        let greter = multiple.filter(m => m > 65)
+        console.log('filterd new array : ' + greter);
+        // reduce
+        let sum = greter.reduce((r,item) => r+item,0)
+        console.log('sum of greater number : ' + sum);
+        
+        
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<aop:aspectj-autoproxy/>
+		<!--<bean id="simpleCalc" class="com.trg.AOP"/> -->
+		<bean id="simpleCalc" class="com.trg.AOP.MyCalculator"/>
+	<!-- After Aspect -->
+	 <bean id="myAfterAspect" class="com.trg.AOP.MyAfterAspect"></bean>
+	<aop:config>
+		<aop:aspect id="myAspect" ref="myAfterAspect">
+			<aop:pointcut expression="execution(* com.trg.AOP.MyCalculator.*(..))" id="pointCutAfter"/>
+			<aop:after method="myAdvise" pointcut-ref="pointCutAfter"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- Before Aspect -->
+	<bean id="simpleCalcOne" class="com.trg.AOP.MyCalculator"/>
+	<bean id="myBeforeAspect" class="com.trg.AOP.MyBeforeAspect"/>
+	<aop:config>
+		<aop:aspect id= "beforeAspect" ref="myBeforeAspect">
+			<aop:pointcut expression="execution(* com.trg.AOP.MyCalculator.*(..))" id="pointCutBefore"/>
+			<aop:after method="myAdvise" pointcut-ref="pointCutBefore"/>
+		</aop:aspect>
+	</aop:config>
+
+	<!-- After throwing aspect
+	<bean id="simpleCalculatorException" class="com.trg.AOP.MyCalculatorThowsException"/>
+	<bean id="myException"/> -->
+	<!-- com.trg.AOPAnnotaion; -->
+	<bean id="logAspect" class="com.trg.AOPAnnotaion.LoginAspect"/>
+	<bean id="manageEmployee" class="com.trg.AOPAnnotaion.EmployeeManagement"/>
+	
+</beans>

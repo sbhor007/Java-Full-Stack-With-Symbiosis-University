@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    ">
+
+	<!-- Setter injection -->
+	<bean name="employee" class="com.trg.Application.Employee">
+		<property name="id" value="8" />
+		<property name="name" value="Santosh Bhor"></property>
+	</bean>
+
+
+
+
+<!-- Constructor injection -->
+<bean id="country" class="com.trg.Application.Country">
+	<constructor-arg index="0" value="India"></constructor-arg>
+	<constructor-arg index="1" value="20000"></constructor-arg>
+</bean>
+<!-- 
+<bean id="q" class="com.trg.Application.location">
+	<constructor-arg value="11"></constructor-arg>
+	<constructor-arg value="Preferred Location?"></constructor-arg>
+	<constructor-arg>
+		<list>
+			<value>Mumbai</value>
+			<value>Pune</value>
+			<value>Nashik</value>
+		</list>
+	</constructor-arg>
+</bean>
+ -->
+<bean id = "subject" class="com.trg.Application.Subjects">
+	<constructor-arg>
+		<list>
+			<value>Java</value>
+			<value>C++</value>
+			<value>Python</value>
+		</list>
+	</constructor-arg>
+</bean>
+
+<!-- with Annotations -->
+<context:annotation-config/>
+	<bean name="person" class="com.trg.LifeCycleWithAnnotations.Person">
+		<property name="age" value="21"/>
+		<property name="name" value="Santosh Bhor"/>
+	</bean>
+
+
+</beans>
